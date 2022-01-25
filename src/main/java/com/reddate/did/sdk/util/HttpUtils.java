@@ -4,7 +4,6 @@ package com.reddate.did.sdk.util;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import io.netty.handler.codec.http.HttpResponseStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,17 +57,17 @@ public class HttpUtils<T> {
 		Response response = null;
 		try {
 			logger.debug("The request URL is: {} ,The request Data is: {}",url,JSONObject.toJSONString(requestParam));
-			System.out.println("The request URL is: "+url+" ,The request Data is: "+JSONObject.toJSONString(requestParam));
+			// System.out.println("The request URL is: "+url+" ,The request Data is: "+JSONObject.toJSONString(requestParam));
 			response = client.newCall(request).execute();
 			int httpResonseCode = response.code();
-			if(httpResonseCode != HttpResponseStatus.OK.code()) {
+			if(httpResonseCode != 200) {
 				response.close();
 				throw new DidException(ErrorMessage.UNKNOWN_ERROR.getCode(),"call did service failed");
 			}
 			resposneDataStr = response.body().string();
 			response.close();
 			logger.debug("The response data is: {}",resposneDataStr);
-			System.out.println("The response data is: "+resposneDataStr);
+			// System.out.println("The response data is: "+resposneDataStr);
 		} catch (IOException e) {
 			e.printStackTrace();
 			response.close();

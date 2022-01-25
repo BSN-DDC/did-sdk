@@ -24,8 +24,7 @@ public class DidClient {
 	/**
 	 * did service request url
 	 */
-	//private static final String DID_SERVICE_URL = "https://didservice.bsngate.com:18602";
-	private static final String DID_SERVICE_URL = "http://117.107.141.162:19004";
+	private static final String DID_SERVICE_URL = "https://didservice.bsngate.com:18602";
 	
 	/**
 	 * did service request project Id
@@ -53,7 +52,6 @@ public class DidClient {
 	 */
 	public DidClient() {
 		didService = new DidService(DID_SERVICE_URL, DID_SERVICE_PROJECT_ID, DID_SERVICE_TOKEN); 
-		//didService = new DidService("http://127.0.0.1:19004", DID_SERVICE_PROJECT_ID, DID_SERVICE_TOKEN); 
 	}
 	
 	/**

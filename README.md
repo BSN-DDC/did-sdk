@@ -8,8 +8,9 @@ Java 1.8 最新版本(小版本大于200)
 
 ### 三、SDK 依赖的 JAR 包
 使用SDK，请添加did-sdk-1.0.jar,同时添加以下依赖jar包。
+pom.xml
 
-``` pom.xml
+``` 
        <dependency>
             <groupId>com.reddate</groupId>
             <artifactId>ddc.did.sdk</artifactId>
@@ -186,20 +187,21 @@ public class DidClientTest {
 
 ### 五、DID签名
 DID标识符签名，默认签名使用了Secp256k1算法。
+
 ```java
-	ResultData<CreateDidData> createDoc = createDidDocument();
-	if(!createDoc.isSuccess()) {
-		return ResultData.error(createDoc.getCode(),createDoc.getMsg(), DidDataWrapper.class);
-	}
-	logger.debug("create did information is :"+JSONObject.toJSONString(createDoc));
+ResultData<CreateDidData> createDoc = createDidDocument();
+if(!createDoc.isSuccess()) {
+	return ResultData.error(createDoc.getCode(),createDoc.getMsg(), DidDataWrapper.class);
+}
+logger.debug("create did information is :"+JSONObject.toJSONString(createDoc));
 		
-	String didSign = null;
-	try {
-		didSign = ECDSAUtils.sign(createDoc.getData().getDid(), createDoc.getData().getAuthKeyInfo().getPrivateKey());
-	} catch (Exception e) {
-		e.printStackTrace();
-		throw new DidException(ErrorMessage.GENERATE_DID_FAIL.getCode(),ErrorMessage.GENERATE_DID_FAIL.getMessage());
-	}
+String didSign = null;
+try {
+	didSign = ECDSAUtils.sign(createDoc.getData().getDid(), createDoc.getData().getAuthKeyInfo().getPrivateKey());
+} catch (Exception e) {
+	e.printStackTrace();
+	throw new DidException(ErrorMessage.GENERATE_DID_FAIL.getCode(),ErrorMessage.GENERATE_DID_FAIL.getMessage());
+}
 ```
 
 
@@ -207,22 +209,21 @@ DID标识符签名，默认签名使用了Secp256k1算法。
 所有请求方法都有如下的全局配置。
 
 ```java
-	private static final String DID_SERVICE_URL = "http://117.107.141.162:19004";
-	private static final String DID_SERVICE_PROJECT_ID = "8320935187";
-	private static final String DID_SERVICE_TOKEN = "3wxYHXwAm57grc9JUr2zrPHt9HC";
+private static final String DID_SERVICE_URL = "https://didservice.bsngate.com:18602";
+private static final String DID_SERVICE_PROJECT_ID = "8320935187";
+private static final String DID_SERVICE_TOKEN = "3wxYHXwAm57grc9JUr2zrPHt9HC";
 
-	public DidClient() {
-		didService = new DidService(DID_SERVICE_URL, DID_SERVICE_PROJECT_ID, DID_SERVICE_TOKEN); 
-	}
-	
-	
-	RequestBody requestBody = RequestBody.create(JSONObject.toJSONString(requestParam), JSON);
-	Request request = new Request.Builder()
-			      .url(url)
-			      .post(requestBody)
-			      .addHeader("token", token)
-			      .addHeader("projectId", requestParam.getProjectId())
-			      .build();
+public DidClient() {
+	didService = new DidService(DID_SERVICE_URL, DID_SERVICE_PROJECT_ID, DID_SERVICE_TOKEN); 
+}
+		
+RequestBody requestBody = RequestBody.create(JSONObject.toJSONString(requestParam), JSON);
+Request request = new Request.Builder()
+				.url(url)
+				.post(requestBody)
+				.addHeader("token", token)
+			 	.addHeader("projectId", requestParam.getProjectId())
+			 	.build();
 ```
 
 
@@ -231,10 +232,10 @@ DID标识符签名，默认签名使用了Secp256k1算法。
 配置超时时间，默认的连接超时时间是20秒，默认的读超时时间是60秒。
 
 ```java
-	OkHttpClient client = new OkHttpClient.Builder()
-				.connectTimeout(20, TimeUnit.SECONDS)
-				.readTimeout(60, TimeUnit.SECONDS)
-				.build();
+OkHttpClient client = new OkHttpClient.Builder()
+					.connectTimeout(20, TimeUnit.SECONDS)
+					.readTimeout(60, TimeUnit.SECONDS)
+					.build();
 ```
 
 
