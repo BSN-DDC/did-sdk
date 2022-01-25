@@ -219,11 +219,11 @@ public DidClient() {
 		
 RequestBody requestBody = RequestBody.create(JSONObject.toJSONString(requestParam), JSON);
 Request request = new Request.Builder()
-				.url(url)
-				.post(requestBody)
-				.addHeader("token", token)
-			 	.addHeader("projectId", requestParam.getProjectId())
-			 	.build();
+		.url(url)
+		.post(requestBody)
+		.addHeader("token", token)
+		.addHeader("projectId", requestParam.getProjectId())
+	 	.build();
 ```
 
 
@@ -233,9 +233,9 @@ Request request = new Request.Builder()
 
 ```java
 OkHttpClient client = new OkHttpClient.Builder()
-					.connectTimeout(20, TimeUnit.SECONDS)
-					.readTimeout(60, TimeUnit.SECONDS)
-					.build();
+		.connectTimeout(20, TimeUnit.SECONDS)
+		.readTimeout(60, TimeUnit.SECONDS)
+		.build();
 ```
 
 
