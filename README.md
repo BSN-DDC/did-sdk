@@ -7,8 +7,7 @@ Java 1.8 最新版本(小版本大于200)
 
 
 ### 三、SDK 依赖的 JAR 包
-使用SDK，请添加did-sdk-1.0.jar,同时添加以下依赖jar包。
-pom.xml
+
 
 ``` 
        <dependency>
