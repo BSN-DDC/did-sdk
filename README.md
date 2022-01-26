@@ -30,7 +30,7 @@ Java 1.8 最新版本(小版本大于200)
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.47</version>
+            <version>1.2.79</version>
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
