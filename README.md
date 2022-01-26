@@ -6,11 +6,28 @@ BSN DID 是平台方的链上身份凭证标识，关联平台方的业务开通
 Java 1.8 最新版本(小版本大于200)
 
 
-### 三、SDK 依赖的 JAR 包
+### 三、从源码构建
 
+构建过程需跳过单元测试，命令：
 
 ``` 
-          <dependency>
+    mvn clean install -Dmaven.test.skip=true
+```
+
+
+### 四、 项目集成SDK  
+
+项目集成SDK, 请添加其它依赖的 JAR 包
+
+```    
+	<dependency>
+            <groupId>com.reddate</groupId>
+            <artifactId>ddc.did.sdk</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/did-sdk-1.0.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>org.apache.directory.studio</groupId>
             <artifactId>org.apache.commons.codec</artifactId>
             <version>1.8</version>
@@ -74,7 +91,7 @@ Java 1.8 最新版本(小版本大于200)
 ```
 
 
-### 四、用法
+### 五、用法
 
 DidClientTest.java
 
@@ -104,7 +121,6 @@ public class DidClientTest {
 	public void generateDidtest() {
 		DidClient didClient = this.getDidClient();
 		DidDataWrapper didDataWrapper = didClient.createDid();
-		System.out.println("=================="+JSONObject.toJSONString(didDataWrapper));
 		assertNotNull(didDataWrapper);
 		assertNotNull(didDataWrapper.getDid());
 		assertNotNull(didDataWrapper.getDocument());
@@ -177,7 +193,7 @@ public class DidClientTest {
 
 ```
 
-### 五、DID签名
+### 六、DID签名
 DID标识符签名，默认签名使用了Secp256k1算法。
 
 ```java
@@ -197,7 +213,7 @@ try {
 ```
 
 
-### 六、默认全局配置
+### 七、默认全局配置
 所有请求方法都有如下的全局配置。
 
 ```java
@@ -219,7 +235,7 @@ Request request = new Request.Builder()
 ```
 
 
-### 七、配置超时时间
+### 八、配置超时时间
 
 配置超时时间，默认的连接超时时间是20秒，默认的读超时时间是60秒。
 
