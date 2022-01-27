@@ -45,12 +45,43 @@
 			<groupId>org.fisco-bcos.java-sdk</groupId>
 			<artifactId>java-sdk</artifactId>
 			<version>2.7.0</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-io</artifactId>
+					<groupId>commons-io</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+    		<groupId>commons-io</groupId>
+    		<artifactId>commons-io</artifactId>
+    		<version>2.11.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.fisco-bcos</groupId>
 			<artifactId>web3sdk</artifactId>
 			<version>2.6.4</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>org.apache.httpcomponents</artifactId>
+					<groupId>httpclient</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>com.google.guava</artifactId>
+					<groupId>guava</groupId>
+				</exclusion>				
+			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.13</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>31.0.1-jre</version>
+			</dependency>		
 		<dependency>
 			<groupId>com.squareup.okhttp3</groupId>
 			<artifactId>okhttp</artifactId>

@@ -23,9 +23,9 @@ Java 1.8 最新版本(小版本大于200)
 	<dependency>
             <groupId>com.reddate</groupId>
             <artifactId>ddc.did.sdk</artifactId>
-            <version>1.0</version>
+            <version>${version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/did-sdk-1.0.jar</systemPath>
+            <systemPath>${basedir}/lib/did-sdk-${version}.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.apache.directory.studio</groupId>
