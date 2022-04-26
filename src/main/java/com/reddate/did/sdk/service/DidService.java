@@ -1,10 +1,14 @@
 package com.reddate.did.sdk.service;
 
+import java.math.BigInteger;
 import java.util.Objects;
 import java.util.concurrent.TimeoutException;
 
 import cn.hutool.core.util.ObjectUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.fisco.bcos.web3j.crypto.Credentials;
+import org.fisco.bcos.web3j.crypto.ECKeyPair;
+import org.fisco.bcos.web3j.crypto.gm.GenCredential;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -87,6 +91,10 @@ public class DidService extends BaseService {
 			}
 		}
 		
+		ECKeyPair ecKeyPair = GenCredential.createECDSAKeyPair(new BigInteger(createDoc.getData().getAuthKeyInfo().getPublicKey()).toString(16));
+		Credentials credentials = GenCredential.create(ecKeyPair);
+		String address = credentials.getAddress();
+		
 		DidDataWrapper dataWrapper =  new DidDataWrapper();
 		dataWrapper.setDid(createDoc.getData().getDid());
 		dataWrapper.setAuthKeyInfo(createDoc.getData().getAuthKeyInfo());
@@ -101,6 +109,7 @@ public class DidService extends BaseService {
 		documentInfo.setProof(createDoc.getData().getDidDocument().getProof());
 		dataWrapper.setDocument(documentInfo);
 		dataWrapper.setDidSign(didSign);
+		dataWrapper.setAddress(address);
 		
 		return ResultData.success(dataWrapper);
 	}
