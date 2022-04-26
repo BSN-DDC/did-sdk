@@ -42,6 +42,11 @@ public class DidDataWrapper implements Serializable {
 	 */
 	private DocumentInfo document;
 	
+	/**
+	 * The address of public key
+	 */
+	private String address;
+	
 	public String getDid() {
 		return did;
 	}
@@ -80,6 +85,14 @@ public class DidDataWrapper implements Serializable {
 
 	public void setDidSign(String didSign) {
 		this.didSign = didSign;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 }
