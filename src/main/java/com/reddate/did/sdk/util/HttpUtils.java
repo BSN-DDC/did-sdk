@@ -46,7 +46,7 @@ public class HttpUtils<T> {
 			      .post(requestBody)
 			      .addHeader("token", token)
 			      .addHeader("projectId", requestParam.getProjectId())
-			      .build();
+			      .header("Connection", "close").build();
 			 
 		OkHttpClient client = new OkHttpClient.Builder()
 				.connectTimeout(20, TimeUnit.SECONDS)
